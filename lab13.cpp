@@ -77,6 +77,14 @@ int main() {
     print_top15(top15_records);
     temp_top15_records.swap(top15_records); // swap back
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
+    cout << "Before size = " << top15_records.size() << endl;
+    if (!top15_records.empty()) {
+        top15_records.pop_back();
+    }
+    cout << "Now size = " << top15_records.size() << endl; // expected 14
+    cout << "Let's see the top 14: " <<endl;
+    print_top15(top15_records);
+
 
     return 0;
 }
@@ -84,7 +92,7 @@ int main() {
 void readFile(const string& filename, vector<double>& all50_records){ 
     ifstream fin(filename); // this function reads 50 marks from a text file into all50_records
     double mark;
-    int i = 0;
+    int i =0;
     while (fin >> mark) {
         all50_records.push_back(mark);  // bounds-checked
         i++;
@@ -103,7 +111,7 @@ void extractTop15(const vector<double>& all50_records, vector<double>& top15_rec
 }
 
 void print_top15(const vector<double>& top15_records){
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < top15_records.size(); ++i) {
     cout << (i+1) << ". " << top15_records[i] <<endl;
 }
     cout <<endl;
