@@ -25,14 +25,26 @@ int main() {
     return 0;
 }
 
-void readFile(){
-
+void readFile(const string& filename, vector<double>& all50_records){ 
+    ifstream fin(filename); // this function reads 50 marks from a text file into all50_records
+    double mark;
+    int i = 0;
+    while (fin >> mark && i < static_cast<int>(all50_records.size())) {
+        all50_records.at(i) = mark;  // bounds-checked
+        i++;
+    }
+    fin.close();
 }
 
-void extractTop15(){
-
+// This function sorts the copy of the 50 marks and copy the first 15 (fastest) into top15_records
+void extractTop15(const vector<double>& all50_records, vector<double>& top15_records) {
+    vector<double> temp = all50_records;   // copy the all50_records
+    sort(temp.begin(), temp.end());                   
+    for (int i = 0; i < 15; i++) {
+        top15_records.at(i) = temp.at(i);
+    }
 }
 
 void print_top15(){
-    
+
 }
